@@ -36,6 +36,22 @@ export class ExcelService {
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
+  public exportAsExcelFilefrDeliveryReport(DeliveryReport: any[],excelFileName: string): void {
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(DeliveryReport); //Delivery Report
+    // XLSX.utils.
+    //console.log('worksheet', worksheet);
+    // alert('service worksheet : '+JSON.stringify( worksheet))
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 
+          'Delivery Report': worksheet
+         }, 
+         SheetNames: ['Delivery Report']
+    };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {
