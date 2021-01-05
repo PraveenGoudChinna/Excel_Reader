@@ -123,7 +123,10 @@ export class DeliveryReportComponent implements OnInit {
     let notDailyarr = epicList.filter(a => (a["Epic Link"] !== 'Daily Stand Up'))
     let notProjectarr = notDailyarr.filter(a => (a["Epic Link"] !== "Project Management"))
     let notTrainingndOnboard = notProjectarr.filter(a => (a["Epic Link"] !== "Training and Onboarding"))
-    let finalarr = notTrainingndOnboard.filter(a => (a["Epic Link"] !== "Product Team Meetings/Demos/Documentation"))
+    let notProductteamarr = notTrainingndOnboard.filter(a => (a["Epic Link"] !== "Product Team Meetings/Demos/Documentation"))
+    let notTimeDailyarr = notProductteamarr.filter(a => (a["Epic Link"] !== "[TIME CODING] Daily Stand Up"))
+    let notTimeProjectarr = notTimeDailyarr.filter(a => (a["Epic Link"] !== "[TIME CODING] Project Management"))
+    let finalarr = notTimeProjectarr.filter(a => (a["Epic Link"] !== "[TIME CODING] Training and Onboarding"))
 
    // console.log("Final Array")
     //console.log(finalarr)
@@ -167,11 +170,12 @@ export class DeliveryReportComponent implements OnInit {
        uniqueresult[f]['Customer'] =  uniqueresult[f]['Epic Link']; //replacing epik link with customer name
        delete  uniqueresult[f]['Epic Link'];
        delete uniqueresult[f]['Full name']
+       delete uniqueresult[f]["Parent Key"] //deleting Parent Key after adding into issukey
     }
     //uniqueresult.splice(1, 0, 'blue') 
     uniqueresult.push({'Delivery Tix':''})
     uniqueresult.push({'Priority':''})
-    uniqueresult.push({'Status':''})
+    /* uniqueresult.push({'Status':''}) */
     uniqueresult.push({'Expected Date of Production / Completion':''})
     uniqueresult.push({'Comments':''})
     //return this.sort_by_key(this.swapArrayLocs(uniqueresult,0,5),'Customer')
