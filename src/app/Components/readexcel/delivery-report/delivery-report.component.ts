@@ -176,12 +176,28 @@ export class DeliveryReportComponent implements OnInit {
     uniqueresult.push({'Delivery Tix':''})
     uniqueresult.push({'Priority':''})
     /* uniqueresult.push({'Status':''}) */
-    uniqueresult.push({'Expected Date of Production / Completion':''})
-    uniqueresult.push({'Comments':''})
-    //return this.sort_by_key(this.swapArrayLocs(uniqueresult,0,5),'Customer')
-    return this.sort_by_key(uniqueresult,'Customer')
+   // uniqueresult.push({'Expected Date of Production / Completion':''})
+   // uniqueresult.push({'Comments':''})
+    return this.SwappingMethod(uniqueresult)
+    //return this.sort_by_key(uniqueresult,'Customer')
   }
-
+   SwappingMethod(arraydata:any){
+    
+   var data =  arraydata.map(function(x) {
+      return {
+              'Customer': x.Customer,
+             'Delivery Tix':x["Delivery Tix"],
+             'Issue Key':x["Issue Key"],
+             'Issue summary':x["Issue summary"],
+             'Issue Type':x["Issue Type"],
+             'Priority':x["Priority"],
+             'Issue Status':x["Issue Status"],
+            }
+       });
+       data.push({'Expected Date of Production / Completion':''})
+       data.push({'Comments':''})
+      return this.sort_by_key(data,'Customer')
+   }
   //swap array indexs
   swapArrayLocs(arr, index1, index2) {
     var temp = arr[index1];
