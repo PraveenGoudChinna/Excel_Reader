@@ -122,14 +122,18 @@ export class ReadexcelComponent implements OnInit {
   }
 
   /*step2 removeving rows if epiclink column is having 
-  "Daily Stand Up" || "Project Management" || "Training and Onboarding"
+  "Daily Stand Up" || "Project Management" || "Training and Onboarding" || "TIMECODE"
   */
   epicLinkRequired(Requiredlist: any[]) {
     var epicList = JSON.parse(JSON.stringify(Requiredlist))
-    let notDailyarr = epicList.filter(a => (a["Epic Link"] !== 'Daily Stand Up'))
-    let notProjectarr = notDailyarr.filter(a => (a["Epic Link"] !== "Project Management"))
-    let notTrainingndOnboard = notProjectarr.filter(a => (a["Epic Link"] !== "Training and Onboarding"))
-    let finalarr = notTrainingndOnboard.filter(a => (a["Epic Link"] !== "Product Team Meetings/Demos/Documentation"))
+    
+    let notDailyarr = epicList.filter(a => (a["Epic Link"].trim().toLowerCase() !== 'daily stand up'))
+    let notProjectarr = notDailyarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "project management"))
+    let notTrainingndOnboard = notProjectarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "training and onboarding"))
+    let notProductteamarr = notTrainingndOnboard.filter(a => (a["Epic Link"].trim().toLowerCase() !== "product team meetings/demos/documentation"))
+    let notTimeDailyarr = notProductteamarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] daily dtand up"))
+    let notTimeProjectarr = notTimeDailyarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] project management"))
+    let finalarr = notTimeProjectarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] training and onboarding"))
 
    // console.log("Final Array")
     //console.log(finalarr)
