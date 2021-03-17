@@ -124,7 +124,7 @@ export class DeliveryReportComponent implements OnInit {
     let notProjectarr = notDailyarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "project management"))
     let notTrainingndOnboard = notProjectarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "training and onboarding"))
     let notProductteamarr = notTrainingndOnboard.filter(a => (a["Epic Link"].trim().toLowerCase() !== "product team meetings/demos/documentation"))
-    let notTimeDailyarr = notProductteamarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] daily dtand up"))
+    let notTimeDailyarr = notProductteamarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] daily stand up"))
     let notTimeProjectarr = notTimeDailyarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] project management"))
     let finalarr = notTimeProjectarr.filter(a => (a["Epic Link"].trim().toLowerCase() !== "[time coding] training and onboarding"))
 
