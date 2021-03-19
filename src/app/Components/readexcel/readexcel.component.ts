@@ -117,14 +117,15 @@ export class ReadexcelComponent implements OnInit {
     }
     /* console.log("required data")
     console.log(Requiredlist) */
-    this.epicLinkRequired(Requiredlist)
+    //this.epicLinkRequired(Requiredlist)
+    this.epicLinkRequired2(Requiredlist)
 
   }
 
   /*step2 removeving rows if epiclink column is having 
   "Daily Stand Up" || "Project Management" || "Training and Onboarding" || "TIMECODE"
   */
-  epicLinkRequired(Requiredlist: any[]) {
+  /* epicLinkRequired(Requiredlist: any[]) {
     var epicList = JSON.parse(JSON.stringify(Requiredlist))
     
     let notDailyarr = epicList.filter(a => (a["Epic Link"].trim().toLowerCase() !== 'daily stand up'))
@@ -138,7 +139,32 @@ export class ReadexcelComponent implements OnInit {
    // console.log("Final Array")
     //console.log(finalarr)
     this.replaceIssueKey(finalarr)
-  }
+  } */
+
+  epicLinkRequired2(Requiredlist: any[]){
+    // let epicList = JSON.parse(JSON.stringify(Requiredlist))
+      var finalarr = [];
+      finalarr = _.cloneDeep(Requiredlist);
+ 
+     for(var m = 0 ; m < finalarr.length; m ++){
+       var data = finalarr[m]["Epic Link"] //.trim().toLowerCase();
+       if(data != null || data != undefined || data != ''){
+         var str = data.trim().toLowerCase();
+         if(str.includes("time coding") ||
+            str.includes("daily stand up") ||
+            str.includes("project management") ||
+            str.includes("training and onboarding") ||
+            str.includes("product team meetings/demos/documentation")){
+ 
+              finalarr.splice(m,1)
+             m = m - 1
+         }
+       } 
+     }
+     this.replaceIssueKey(finalarr)
+   }
+ 
+
 
   /*step3 : replacing Issue key with Parent Key if Issue Type is Sub-Task 
   and adding empty string to the three columns
