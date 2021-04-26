@@ -139,10 +139,14 @@ export class DeliveryReportComponent implements OnInit {
      finalarr = _.cloneDeep(Requiredlist);
 
     for(var m = 0 ; m < finalarr.length; m ++){
-      var data = finalarr[m]["Epic Link"] //.trim().toLowerCase();
-      if(data != null || data != undefined || data != ''){
-        var str = data.trim().toLowerCase();
-        if(str.includes("time coding") ||
+      var data = finalarr[m]["Epic Link"] //.trim().toLowerCase(); undefined
+      if(data != undefined ){
+        if(data != null ||  data != ''){
+          var str = data.toLowerCase().trim();
+       /*  if(m==260||m==261||m==262||m==263){
+          var str = data.toLowerCase().trim();
+         } */
+         if(str.includes("time coding") ||
            str.includes("daily stand up") ||
            str.includes("project management") ||
            str.includes("training and onboarding") ||
@@ -152,6 +156,7 @@ export class DeliveryReportComponent implements OnInit {
             m = m - 1
         }
       } 
+     }
     }
     this.replaceIssueKey(finalarr)
   }
