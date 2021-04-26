@@ -141,7 +141,7 @@ export class DeliveryReportComponent implements OnInit {
     for(var m = 0 ; m < finalarr.length; m ++){
       var data = finalarr[m]["Epic Link"] //.trim().toLowerCase(); undefined
       if(data != undefined ){
-        if(data != null ||  data != ''){
+        if(data != null &&  data != ''){
           var str = data.toLowerCase().trim();
        /*  if(m==260||m==261||m==262||m==263){
           var str = data.toLowerCase().trim();

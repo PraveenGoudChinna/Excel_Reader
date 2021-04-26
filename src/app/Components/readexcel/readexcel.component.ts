@@ -149,7 +149,7 @@ export class ReadexcelComponent implements OnInit {
      for(var m = 0 ; m < finalarr.length; m ++){
        var data = finalarr[m]["Epic Link"] //.trim().toLowerCase();
        if(data != undefined){
-        if(data != null ||  data != ''){
+        if(data != null &&  data != ''){
          var str = data.toLowerCase().trim();
          if(str.includes("time coding") ||
             str.includes("daily stand up") ||
